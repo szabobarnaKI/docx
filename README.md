@@ -143,7 +143,6 @@ Limitations: only the label metadata is copied – visual markings that a label 
 | `docx.ado`, `docx.sthlp` | The `docx` command and its help file |
 | `docxlabel.ado`, `docxlabel.sthlp` | The `docxlabel` command (also `docx label`) and its help file |
 | `docx.pkg`, `stata.toc` | Package description used by `net install` |
-| `test/docx_test.do` | Test script (not installed) |
 
 ## Help
 
