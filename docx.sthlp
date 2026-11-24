@@ -37,7 +37,8 @@
 {synopt:{opt emptylines}}Adds empty lines.{p_end}
 {synopt:{opt tableshader}}Shades every other line in a table, to improve readability.{p_end}
 {synopt:{opt checkpoint}}Stores the document as docx file, but without closing the putdocx session. Thus, you can continue to edit the docx document in memory.{p_end}
-{synopt:{opt save}}Stores the document as docx file, and closes the in-memory docx document.{p_end}
+{synopt:{opt save}}Stores the document as docx file, and closes the in-memory docx document. {cmd:docx} creates unique, numbered file names for the output. If 
+you want to have a specific, non-numbered file name, use {help putdocx save} instead.{p_end}
 {synopt:{it:everything else}}What is not defined above is passed forward to {cmd:putdocx} without change, thus {cmd:docx} acts as an abbreviation to {cmd:putdocx}.{p_end}
 {synoptline}
 {syntab:maintitle options}
@@ -116,9 +117,9 @@ document. {cmd:docx} also allows to copy a security label from an existing docx 
 
 {phang}{cmd:. docx pagebreak}{p_end}
 
-{phang}{cmd:. docx title, text(1 Caption number one))}{p_end}
+{phang}{cmd:. docx title, text(1 Caption number one)}{p_end}
 
-{phang}{cmd:. docx subtitle, text(1.1 First subsection))}{p_end}
+{phang}{cmd:. docx subtitle, text(1.1 First subsection) toc}{p_end}
 
 {phang}{cmd:. putdocx textblock begin, indent(left,0.5)}{p_end}
 
@@ -126,6 +127,6 @@ document. {cmd:docx} also allows to copy a security label from an existing docx 
 
 {phang}{cmd:. putdocx textblock end}{p_end}
 
-{phang}{cmd:. docx subtitle, text(1.2 Second subsection))}{p_end}
+{phang}{cmd:. docx subtitle, text(1.2 Second subsection) toc}{p_end}
 
 {phang}{cmd:. docx save, path("C:/Project1/Results") filestub("output")}{p_end}
