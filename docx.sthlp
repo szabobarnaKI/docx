@@ -35,7 +35,7 @@
 {synopt:{opt subtitle}}Inserts the specified text as a subtitle.{p_end}
 {synopt:{opt paragraph}}Start a new paragraph with default settings ({it:halign(left) indent(left,0.5) font("`Arial'", 11)}).{p_end}
 {synopt:{opt emptylines}}Adds empty lines.{p_end}
-{synopt:{opt tableshader}}Chades every other line in a table, to improve readability.{p_end}
+{synopt:{opt tableshader}}Shades every other line in a table, to improve readability.{p_end}
 {synopt:{opt checkpoint}}Stores the document as docx file, but without closing the putdocx session. Thus, you can continue to edit the docx document in memory.{p_end}
 {synopt:{opt save}}Stores the document as docx file, and closes the in-memory docx document.{p_end}
 {synopt:{it:everything else}}What is not defined above is passed forward to {cmd:putdocx} without change, thus {cmd:docx} acts as an abbreviation to {cmd:putdocx}.{p_end}
@@ -78,8 +78,8 @@
 
 {syntab:save options}
 {synopt:{opt path(string)}}The path of the document to be created. The path needs to be enclosed in quotes or compound double quotes.{p_end}
-{synopt:{opt filestub(string)}}The stub name for the output file. {cmd:docx save} automatically adds a rolling number to the file name and avoids overwriting old files.
-The filestub needs to be enclosed in quotes or compound double quotes.{p_end}
+{synopt:{opt filestub(string)}}The stub name for the output file. {cmd:docx save} automatically adds a rolling number to the file name and avoids overwriting old 
+files. The filestub needs to be enclosed in quotes or compound double quotes.{p_end}
 {synopt:{opt sec:uritylabel(string)}}The path and name of a document that is saved with a security label, that needs to be cloned into the new docx.{p_end}
 {synopt:{opt rc}}Display the return information from the security label copying subcommand.{p_end}
 {synoptline}

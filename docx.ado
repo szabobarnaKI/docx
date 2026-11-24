@@ -14,7 +14,7 @@ program define docx, rclass
 		    main_title `0'
 		}
 		else if strlower("`1'")=="date" {
-			putdocx paragraph, halign(center) font("`Arial'", 16)
+			putdocx paragraph, halign(center) font("Arial", 16)
 			putdocx text ("`c(current_date)'"), nformat(%tcCCYY-NN-DD)
 		}
 	    else if inlist(strlower("`1'"),"author,","author") {
@@ -27,7 +27,7 @@ program define docx, rclass
 		    subparagraph_title `0'
 		}
 	    else if strlower("`1'")=="paragraph" {
-			putdocx paragraph, halign(left) indent(left,0.5) font("`Arial'", 11)
+			putdocx paragraph, halign(left) indent(left,0.5) font("Arial", 11)
 		}
 		else if inlist(strlower("`1'"),"emptylines,","emptylines") {
 		    empty_lines `0'
@@ -53,7 +53,7 @@ program define docx, rclass
 		}
 		else putdocx `0'
 	}
-	else display "{txt}Error. Type of action not defined.{break}Define {it:open}, {it:maintitle}, {it:author}, {it:date}, {it:title}, {it:subtitle}, {it:paragraph}, {it:emptylines}, {it:starttoc} or {it:save}. You can also use docx with putdocx options."
+	else display "{txt}Error. Type of action not defined.{break}Define {it:open}, {it:maintitle}, {it:author}, {it:date}, {it:title}, {it:subtitle}, {it:paragraph}, {it:emptylines}, {it:starttoc}, {it:tableshader}, {it:checkpoint} or {it:save}. You can also use docx with putdocx options."
 end
 
 program define main_title
@@ -86,7 +86,7 @@ program define save_docx, rclass
 end
 
 program define save_checkpoint_docx
-	syntax [anything], name(string) replace
+	syntax [anything], name(string) [replace]
 	if "`replace'"!="replace" {
 		confirm new file `"`name'"'
 	}
@@ -147,9 +147,10 @@ program define paragraph_title
 	    //paragraph title needs to be added to table of contents
 		//if pagenumber==-1, no pagenumber shall be entered
 		addtocline, contents(`text') page(`pagenumber') indentation(0)
+		local book_mark="bookmark(toc_bm`=r(toc_row)')"
 	}
 	putdocx paragraph, halign(left) font("Arial", 13)
-	putdocx text ("`text'"), bold bookmark(toc_bm`=r(toc_row)')
+	putdocx text ("`text'"), bold `book_mark'
 end
 
 program define subparagraph_title
@@ -158,9 +159,10 @@ program define subparagraph_title
 	    //paragraph title needs to be added to table of contents
 		//if pagenumber==-1, no pagenumber shall be entered
 		addtocline, contents(`text') page(`pagenumber') indentation(`indentation')
+		local book_mark="bookmark(toc_bm`=r(toc_row)')"
 	}
 	putdocx paragraph, halign(left) font("Arial", 11)
-	putdocx text ("`text'"), bold bookmark(toc_bm`=r(toc_row)')
+	putdocx text ("`text'"), bold `book_mark'
 end
 
 program define empty_lines
