@@ -1,3 +1,5 @@
+*! version 1.1.0  24nov2026
+*! docx: extended functions for putdocx; docx label forwards to docxlabel
 //capture program drop docx
 program define docx, rclass
 	version 19.0
@@ -51,9 +53,15 @@ program define docx, rclass
 		    tbl_shader `0'
 			return add
 		}
+		else if strlower("`subcmd'")=="label" {
+			// forward everything after the subcommand name to docxlabel
+			gettoken sub rest : 0, parse(" ,")
+			docxlabel `rest'
+			return add
+		}
 		else putdocx `0'
 	}
-	else display "{txt}Error. Type of action not defined.{break}Define {it:open}, {it:maintitle}, {it:author}, {it:date}, {it:title}, {it:subtitle}, {it:paragraph}, {it:emptylines}, {it:starttoc}, {it:tableshader}, {it:checkpoint} or {it:save}. You can also use docx with putdocx options."
+	else display "{txt}Error. Type of action not defined.{break}Define {it:open}, {it:maintitle}, {it:author}, {it:date}, {it:title}, {it:subtitle}, {it:paragraph}, {it:emptylines}, {it:starttoc}, {it:tableshader}, {it:checkpoint}, {it:save} or {it:label}. You can also use docx with putdocx options."
 end
 
 program define main_title

@@ -1,0 +1,4 @@
+v 3
+d Stata commands by szabobarnaKI (Karolinska Institutet)
+d https://github.com/szabobarnaKI/docx
+p docx Extended functions for putdocx: report layout, linked TOC, table shading, sensitivity labels

@@ -49,6 +49,9 @@ Existing label metadata in {it:target} is removed first; other custom properties
 renumbered. Nothing else in {it:target} is changed.
 
 {pstd}
+{cmd:docxlabel} is part of the {helpb docx} package and can also be called as {cmd:docx label} with the same syntax.
+
+{pstd}
 Without {cmd:from()}, {cmd:docxlabel} only reports the label of {it:file}.
 
 
@@ -94,4 +97,4 @@ Close {it:target} in Word before running {cmd:docxlabel}.
 
 {title:Also see}
 
-{psee}{helpb putdocx}, {helpb java}{p_end}
+{psee}{helpb docx}, {helpb putdocx}, {helpb java}{p_end}

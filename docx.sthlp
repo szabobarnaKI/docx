@@ -1,8 +1,9 @@
 {smcl}
-{* *! version 1.0  24sep2025}{...}
+{* *! version 1.1.0  24nov2026}{...}
 {findalias asfradohelp}{...}
 {vieweralsosee "" "--"}{...}
-{vieweralsosee "[R] help" "help help"}{...}
+{vieweralsosee "[RPT] putdocx" "help putdocx"}{...}
+{vieweralsosee "docxlabel" "help docxlabel"}{...}
 {viewerjumpto "Syntax" "docx##syntax"}{...}
 {viewerjumpto "Description" "docx##description"}{...}
 {viewerjumpto "Example" "docx##example"}{...}
@@ -39,6 +40,7 @@
 {synopt:{opt checkpoint}}Stores the document as docx file, but without closing the putdocx session. Thus, you can continue to edit the docx document in memory.{p_end}
 {synopt:{opt save}}Stores the document as docx file, and closes the in-memory docx document. {cmd:docx} creates unique, numbered file names for the output. If 
 you want to have a specific, non-numbered file name, use {help putdocx save} instead.{p_end}
+{synopt:{opt label}}Copies (or reports) a Microsoft Purview sensitivity label; {cmd:docx label} {it:...} is the same as {helpb docxlabel} {it:...}.{p_end}
 {synopt:{it:everything else}}What is not defined above is passed forward to {cmd:putdocx} without change, thus {cmd:docx} acts as an abbreviation to {cmd:putdocx}.{p_end}
 {synoptline}
 {syntab:maintitle options}
@@ -83,6 +85,12 @@ you want to have a specific, non-numbered file name, use {help putdocx save} ins
 files. The filestub needs to be enclosed in quotes or compound double quotes.{p_end}
 {synopt:{opt sec:uritylabel(string)}}The path and name of a document that is saved with a security label, that needs to be cloned into the new docx.{p_end}
 {synopt:{opt rc}}Display the return information from the security label copying subcommand.{p_end}
+
+{syntab:label options}
+{synopt:{it:target}}The file to be labelled (or queried, without {opt from()}). Names with spaces must be in double quotes.{p_end}
+{synopt:{opt from(source)}}Labelled file whose sensitivity label is copied.{p_end}
+{synopt:{opt sav:ing(newfile)}}Write the result to {it:newfile} instead of changing {it:target} in place.{p_end}
+{synopt:{opt replace}}Allow {opt saving()} to overwrite an existing file.{p_end}
 {synoptline}
 
 
@@ -94,6 +102,10 @@ files. The filestub needs to be enclosed in quotes or compound double quotes.{p_
 it allows to add a table of contents that is updated automatically when calling {cmd:docx title} or {cmd:docx subtitle}. Currently (in Stata 19.0), 
 page numbers need to be defined manually, but the TOC is created by default with internal links to each section of the 
 document. {cmd:docx} also allows to copy a security label from an existing docx file to the one created by Stata.
+
+{pstd}
+The security label is copied by {helpb docxlabel}, which is part of this package. It can be called as {cmd:docx label}
+or on its own as {cmd:docxlabel}, also for .docx files not created by {cmd:docx}.
 
 
 {marker example}{...}
@@ -117,7 +129,7 @@ document. {cmd:docx} also allows to copy a security label from an existing docx 
 
 {phang}{cmd:. docx pagebreak}{p_end}
 
-{phang}{cmd:. docx title, text(1 Caption number one)}{p_end}
+{phang}{cmd:. docx title, text(1 Caption number one) toc}{p_end}
 
 {phang}{cmd:. docx subtitle, text(1.1 First subsection) toc}{p_end}
 
@@ -130,3 +142,16 @@ document. {cmd:docx} also allows to copy a security label from an existing docx 
 {phang}{cmd:. docx subtitle, text(1.2 Second subsection) toc}{p_end}
 
 {phang}{cmd:. docx save, path("C:/Project1/Results") filestub("output")}{p_end}
+
+{phang}{cmd:. docx label "C:/Project1/Results/output1.docx", from("H:/templates/labelled.docx")}{p_end}
+
+{phang}{cmd:. docx label "C:/Project1/Results/output1.docx"}{p_end}
+
+
+{title:Stored results}
+
+{pstd}{cmd:docx save} stores {cmd:r(fname)}, the full name of the saved file.{p_end}
+
+{pstd}{cmd:docx tableshader} stores {cmd:r(tablename)}, {cmd:r(title)} and {cmd:r(notes)} (yes/no), and the scalar {cmd:r(header_rows)}.{p_end}
+
+{pstd}{cmd:docx label} stores the results of {helpb docxlabel}.{p_end}

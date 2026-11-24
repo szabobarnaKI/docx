@@ -1,0 +1,20 @@
+v 3
+d 'DOCX': extended functions for putdocx, with sensitivity-label copying
+d
+d docx simplifies building formatted Word (.docx) reports with putdocx:
+d title page, standardised headings, a table of contents with internal
+d links, zebra-shaded tables, checkpoints and numbered output files.
+d Subcommands it does not define are passed on to putdocx unchanged.
+d
+d docxlabel (also callable as docx label) copies or reports a Microsoft
+d Purview sensitivity label of a .docx/.xlsx/.pptx file, using only
+d Stata's built-in Java.
+d
+d Requires: Stata version 19
+d Distribution-Date: 20261124
+d Author: szabobarnaKI, Karolinska Institutet
+d Support: https://github.com/szabobarnaKI/docx/issues
+f docx.ado
+f docx.sthlp
+f docxlabel.ado
+f docxlabel.sthlp
